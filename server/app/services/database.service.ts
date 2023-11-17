@@ -1,15 +1,16 @@
 import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
+require('dotenv').config();
 
 @injectable()
 export class DatabaseService {
   public connectionConfig: pg.ConnectionConfig = {
-    user: "postgres",
-    database: "TP4",
-    password: "root",
-    port: 5432,          // Attention ! Peut aussi être 5433 pour certains utilisateurs
-    host: "127.0.0.1",
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: parseInt(process.env.DB_PORT as string),          // Attention ! Peut aussi être 5433 pour certains utilisateurs
+    host: process.env.DB_HOST,
     keepAlive: true
   };
 
