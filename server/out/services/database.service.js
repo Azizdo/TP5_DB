@@ -10,14 +10,15 @@ exports.DatabaseService = void 0;
 const inversify_1 = require("inversify");
 const pg = require("pg");
 require("reflect-metadata");
+require('dotenv').config();
 let DatabaseService = class DatabaseService {
     constructor() {
         this.connectionConfig = {
-            user: "postgres",
-            database: "TP4",
-            password: "root",
-            port: 5432,
-            host: "127.0.0.1",
+            user: process.env.DB_USER,
+            database: process.env.DB_NAME,
+            password: process.env.DB_PASSWORD,
+            port: parseInt(process.env.DB_PORT),
+            host: process.env.DB_HOST,
             keepAlive: true
         };
         this.pool = new pg.Pool(this.connectionConfig);

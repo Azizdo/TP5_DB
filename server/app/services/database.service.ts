@@ -9,7 +9,7 @@ export class DatabaseService {
     user: process.env.DB_USER,
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
-    port: parseInt(process.env.DB_PORT as string),          // Attention ! Peut aussi être 5433 pour certains utilisateurs
+    port: parseInt(process.env.DB_PORT as string),
     host: process.env.DB_HOST,
     keepAlive: true
   };
