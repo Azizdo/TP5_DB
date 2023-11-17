@@ -15,4 +15,14 @@ export class DatabaseService {
   };
 
   public pool: pg.Pool = new pg.Pool(this.connectionConfig);
+
+  public getDate = async () => {
+    try {
+      const result = await this.pool.query("SELECT NOW()");
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw error;
+    } 
+  }
 }

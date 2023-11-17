@@ -13,9 +13,10 @@ export class DatabaseController {
 
   public get router(): Router {
     const router: Router = Router();
+
     router.get("/", async (req: any, res: any) => {
       try {
-        const result = await this.databaseService.pool.query("SELECT NOW()"); //mettre dans service .query
+        const result = await this.databaseService.getDate();
         res.send(result);
       } catch (error) {
         console.error(error);
