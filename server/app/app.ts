@@ -25,6 +25,7 @@ export class Application {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(cookieParser());
     this.app.use(cors());
+    this.app.use(express.json());
   }
 
   public bindRoutes(): void {
