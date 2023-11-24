@@ -1,20 +1,40 @@
 <div>
   <nav class="navbar navbar-dark bg-dark main-nav">
-    <a class="navbar-brand title" href="/" matTooltip="Retournez à l'accueil">INF3710 - TP4</a>
+    <a class="navbar-brand title" href="/" matTooltip="Retournez à l'accueil"
+      >INF3710 - TP4</a
+    >
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" routerLink="/ROUTEUR_À_IMPLÉMENTER">LIEN 1</a>
-        <a class="nav-item nav-link active" routerLink="/ROUTEUR_À_IMPLÉMENTER">LIEN 2</a>
-        <a class="nav-item nav-link active" routerLink="/ROUTEUR_À_IMPLÉMENTER">LIEN 3</a>
+        <button
+          mat-fab
+          color="primary"
+          routerLink="/ROUTEUR_À_IMPLÉMENTER"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
+          mat-fab
+          color="primary"
+          routerLink="/ROUTEUR_À_IMPLÉMENTER"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-fab
+          color="primary"
+          routerLink="/ROUTEUR_À_IMPLÉMENTER"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </div>
   </nav>
 
   <div class="home" *ngIf="route == ''">
-    <p>
-      Titre
-    </p>
-    <button mat-raised-button color="primary" class="btn" routerLink="/ROUTEUR_À_IMPLÉMENTER">Parcourir quelque chose...<mat-icon>arrow_right</mat-icon></button>
+    <p class="title">List of doctors:</p>
+    <ul *ngFor="let doctor of doctors">
+      <li>{{ doctor.nom + ", " + doctor.prenom }}</li>
+    </ul>
   </div>
   <router-outlet></router-outlet>
 </div>

@@ -11,14 +11,14 @@
   align-content: center;
   align-items: center;
   justify-content:center;
-  width: 80%;
+  width: 80%; 
   margin-left: 10.5%;
   font-family: 'Roboto', sans-serif;
   line-height: normal;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 60px;
+  font-size: 30px;
   text-align: center;
   background: rgba(154, 117, 240, 0.4);
   padding-top: 2%;
