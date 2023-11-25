@@ -20,7 +20,7 @@ export class DatabaseController {
         res.send(result);
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
       }
     });
 
@@ -30,18 +30,18 @@ export class DatabaseController {
         res.send(result);
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
       }
     });
 
     router.post("/", async (req: any, res: any) => {
       try {
-        const newDoctorValues = Object.values(req.body);
+        const newDoctorValues = req.body;
         const result = await this.databaseService.addDoctor(newDoctorValues);
         res.send(result);
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
       }
     }
     );
@@ -53,7 +53,7 @@ export class DatabaseController {
         res.send(result);
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
       }
     }
     );
@@ -64,7 +64,7 @@ export class DatabaseController {
         res.send(result);
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: error });
       }
     }
     );

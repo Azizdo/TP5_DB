@@ -23,6 +23,10 @@ export class CommunicationService {
     return this.http.get(`${this.BASE_URL}/${endpoint}`);
 }
 
+  postRequest(endpoint: string, body: any) {
+    return this.http.post(`${this.BASE_URL}/${endpoint}`, body);
+  }
+
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private handleError<T>(
   //   request: string,

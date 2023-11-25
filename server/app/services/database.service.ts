@@ -47,13 +47,14 @@ export class DatabaseService {
     }
   };
 
-  public addDoctor = async (newDoctorValues: any[]) => {
+  public addDoctor = async (newDoctorValues: any) => {
     const id = Math.floor(Math.random() * 1000000);
-    newDoctorValues.unshift(id);
+    newDoctorValues.idmedecin = id;
+    console.log(newDoctorValues);
     try {
       const result = await this.pool.query(
         "INSERT INTO medecins (idmedecin, prenom, nom, specialite, anneesexperience, idservice) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-        newDoctorValues
+        [newDoctorValues.idmedecin, newDoctorValues.prenom, newDoctorValues.nom, newDoctorValues.specialite, newDoctorValues.anneesexperience, newDoctorValues.idservice]
       );
       if (result && result.rows.length > 0) {
         return result.rows[0];

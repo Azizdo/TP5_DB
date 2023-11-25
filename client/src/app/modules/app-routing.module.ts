@@ -6,7 +6,7 @@ import { AddDoctorComponent } from "../components/add-doctor/add-doctor.componen
 
 const routes: Routes = [
   { path: "/", component: AppComponent },
-  { path: "add-doctor", component: AddDoctorComponent },
+  { path: "add", component: AddDoctorComponent },
 ];
 
 @NgModule({

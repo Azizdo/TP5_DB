@@ -1,1 +1,85 @@
-<p>add-doctor works!</p>
+<div class="container">
+  <h2>Add Doctor</h2>
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="prenom">First Name:</label>
+      <input
+        type="text"
+        id="prenom"
+        name="prenom"
+        [(ngModel)]="doctor.prenom"
+        required
+        placeholder="firstName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="nom">Last Name:</label>
+      <input
+        type="text"
+        id="nom"
+        name="nom"
+        [(ngModel)]="doctor.nom"
+        required
+        placeholder="lastName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="specialite">Speciality:</label>
+      <select
+        id="specialite"
+        name="specialite"
+        [(ngModel)]="doctor.specialite"
+        required
+      >
+        <option value="Dermatologie">Dermatology</option>
+        <option value="Neurologie">Neurology</option>
+        <option value="Ophthalmologie">Ophthalmology</option>
+        <option value="Orthopédie">Orthopedics</option>
+        <option value="Psychiatrie">Psychiatry</option>
+        <option value="Cardiologie">Cardiology</option>
+        <option value="Pédiatrie">Pediatrics</option>
+        <option value="Chirurgie">Surgery</option>
+        <option value="Gynécologie">Gynecology</option>
+        <option value="Radiologie">Radiology</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="anneesexperience">Years of Experience:</label>
+      <input
+        type="number"
+        id="anneesexperience"
+        name="anneesexperience"
+        [(ngModel)]="doctor.anneesexperience"
+        required
+        placeholder="0"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="idservice">Service:</label>
+      <select
+        id="idservice"
+        name="idservice"
+        [(ngModel)]="doctor.idservice"
+        required
+        placeholder="Default Service"
+      >
+        <option value="0">Dermatology</option>
+        <option value="1">Neurology</option>
+        <option value="2">Ophthalmology</option>
+        <option value="3">Orthopedics</option>
+        <option value="4">Psychiatry</option>
+        <option value="5">Cardiology</option>
+        <option value="6">Pediatrics</option>
+        <option value="7">Surgery</option>
+        <option value="8">Gynecology</option>
+        <option value="9">Radiology</option>
+      </select>
+    </div>
+
+    <button type="submit">Add Doctor</button>
+  </form>
+</div>
