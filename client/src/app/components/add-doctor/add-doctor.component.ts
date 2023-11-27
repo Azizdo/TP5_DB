@@ -20,7 +20,7 @@ export class AddDoctorComponent implements OnInit {
       this.request.postRequest("/", this.doctor).subscribe((res: any) => {
         if (res) {
           alert(`doctor ${res.prenom} ${res.nom} added successfully`);
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl("/list");
         } else {
           alert("problem adding a doctor, make sure all fields are filled");
         }

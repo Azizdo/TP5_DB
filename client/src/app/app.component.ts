@@ -1,7 +1,6 @@
 import { Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { CommunicationService } from './services/communication.service';
 
 @Component({
   selector: "app-root",
@@ -10,10 +9,8 @@ import { CommunicationService } from './services/communication.service';
 })
 export class AppComponent implements OnInit {
   public route: string;
-  doctors: any[]; 
 
-  
-  public constructor(location: Location, router: Router, private request: CommunicationService) {
+  public constructor(location: Location, router: Router) {
     router.events.subscribe((_val: any) => {
       if (location.path() !== "") {
         this.route = location.path();
@@ -22,14 +19,7 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  fetchGames = () => {
-    this.request.getRequest('').subscribe((res: any) => {
-      this.doctors = res;
-    });
-  };
-  
+
   public readonly title: string = "INF3710 TP4";
-  public ngOnInit(): void {
-    this.fetchGames();
-  }
+  public ngOnInit(): void {}
 }

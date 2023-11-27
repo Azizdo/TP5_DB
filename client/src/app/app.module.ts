@@ -9,11 +9,13 @@ import { CommunicationService } from "./services/communication.service";
 import { AppMaterialModule } from './modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
+import { ListDoctorsComponent } from './components/list-doctors/list-doctors.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddDoctorComponent,
+    ListDoctorsComponent,
   ],
   imports: [
     CommonModule,

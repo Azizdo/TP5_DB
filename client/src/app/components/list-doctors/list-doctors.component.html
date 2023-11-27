@@ -1,0 +1,9 @@
+<div>
+  <div class="home">
+    <p class="title">List of doctors:</p>
+    <ul *ngFor="let doctor of doctors">
+      <li>{{ doctor.nom + ", " + doctor.prenom }}</li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>

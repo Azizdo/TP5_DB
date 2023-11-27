@@ -5,25 +5,13 @@
     >
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
-        <button
-          mat-fab
-          color="primary"
-          routerLink="/add"
-        >
+        <button mat-fab color="primary" routerLink="/add">
           <mat-icon>add</mat-icon>
         </button>
-        <button
-          mat-fab
-          color="primary"
-          routerLink="/ROUTEUR_À_IMPLÉMENTER"
-        >
+        <button mat-fab color="primary" routerLink="/ROUTEUR_À_IMPLÉMENTER">
           <mat-icon>edit</mat-icon>
         </button>
-        <button
-          mat-fab
-          color="primary"
-          routerLink="/ROUTEUR_À_IMPLÉMENTER"
-        >
+        <button mat-fab color="primary" routerLink="/ROUTEUR_À_IMPLÉMENTER">
           <mat-icon>delete</mat-icon>
         </button>
       </div>
@@ -31,10 +19,15 @@
   </nav>
 
   <div class="home" *ngIf="route == ''">
-    <p class="title">List of doctors:</p>
-    <ul *ngFor="let doctor of doctors">
-      <li>{{ doctor.nom + ", " + doctor.prenom }}</li>
-    </ul>
+    <p>Hôpital des chômeurs</p>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn"
+      routerLink="/list"
+    >
+      Clicker ici pour accéder à la liste des médecins<mat-icon>arrow_right</mat-icon>
+    </button>
   </div>
   <router-outlet></router-outlet>
 </div>
