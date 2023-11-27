@@ -8,13 +8,34 @@ import { CommunicationService } from "src/app/services/communication.service";
   styleUrls: ["./add-doctor.component.css"],
 })
 export class AddDoctorComponent implements OnInit {
-  doctor: any = {};
+  doctor: any = {
+    prenom: "Default",
+    nom: "Doc",
+    specialite: "Dermatologie",
+    anneesexperience: 0,
+    idservice: 0,
+  };
 
   constructor(private request: CommunicationService, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
+    if (
+      this.doctor.prenom.trim() === "" ||
+      this.doctor.nom.trim() === "" ||
+      this.doctor.specialite === "" ||
+      this.doctor.anneesexperience == null ||
+      this.doctor.idservice == null
+    ) {
+      alert("Problem adding a doctor: some fields are unfilled");
+      return;
+    } else if (this.doctor.anneesexperience < 0) {
+      alert(
+        "Problem adding a doctor: the years of experience most be positive"
+      );
+      return;
+    }
     try {
       console.log(this.doctor);
       this.request.postRequest("/", this.doctor).subscribe((res: any) => {
@@ -22,12 +43,12 @@ export class AddDoctorComponent implements OnInit {
           alert(`doctor ${res.prenom} ${res.nom} added successfully`);
           this.router.navigateByUrl("/list");
         } else {
-          alert("problem adding a doctor, make sure all fields are filled");
+          alert("problem adding a doctor");
         }
       });
     } catch (error) {
-      console.log(error)
-      alert("problem adding a doctor, make sure all fields are filled");
+      console.log(error);
+      alert("problem adding a doctor");
     }
   }
 }

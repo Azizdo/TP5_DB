@@ -55,6 +55,9 @@
         [(ngModel)]="doctor.anneesexperience"
         required
         placeholder="0"
+        min="0"
+        pattern="[1-9][0-9]*"
+        title="Please enter a positive number."
       />
     </div>
 

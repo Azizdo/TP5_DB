@@ -1,9 +1,28 @@
 <div>
   <div class="home">
     <p class="title">List of doctors:</p>
-    <ul *ngFor="let doctor of doctors">
-      <li>{{ doctor.nom + ", " + doctor.prenom }}</li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Speciality</th>
+          <th>Years of Experience</th>
+          <th>Service ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doctor of doctors">
+          <td>{{ doctor.idmedecin }}</td>
+          <td>{{ doctor.prenom }}</td>
+          <td>{{ doctor.nom }}</td>
+          <td>{{ doctor.specialite }}</td>
+          <td>{{ doctor.anneesexperience }}</td>
+          <td>{{ doctor.idservice }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <router-outlet></router-outlet>
 </div>
