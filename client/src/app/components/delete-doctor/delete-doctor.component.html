@@ -1,1 +1,14 @@
-<p>delete-doctor works!</p>
+<div class="delete-form">
+  <input
+    type="number"
+    name="id"
+    id="id"
+    [(ngModel)]="idInput"
+    required
+    placeholder="ID to delete"
+    min="0"
+    pattern="[1-9][0-9]*"
+  />
+  <button class="btn" (click)="deleteDoctor()">delete</button>
+</div>
+<app-list-doctors> </app-list-doctors>

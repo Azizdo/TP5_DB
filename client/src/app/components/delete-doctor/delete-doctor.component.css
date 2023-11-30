@@ -1,0 +1,19 @@
+.delete-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-form input,
+.delete-form button {
+  margin: 5px;
+}
+
+.btn {
+  background-color: #f44336;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}

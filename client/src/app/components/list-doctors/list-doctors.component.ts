@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CommunicationService } from "src/app/services/communication.service";
+import { DoctorService } from "src/app/services/doctor.service";
 
 @Component({
   selector: "app-list-doctors",
@@ -9,15 +9,17 @@ import { CommunicationService } from "src/app/services/communication.service";
 export class ListDoctorsComponent implements OnInit {
   doctors: any[]; 
   
-  constructor(private request: CommunicationService) {}
-  fetchGames = () => {
-    this.request.getRequest("").subscribe((res: any) => {
-      this.doctors = res;
-    });
-  };
+  constructor(private doctorService: DoctorService) {}
 
   public readonly title: string = "INF3710 TP4";
   public ngOnInit(): void {
-    this.fetchGames();
+    this.fetchDoctors();
+  }
+
+  private fetchDoctors(): void {
+    this.doctorService.getDoctors();
+    this.doctorService.doctorsList.subscribe((res: any) => {
+      this.doctors = res;
+    });
   }
 }

@@ -27,6 +27,10 @@ export class CommunicationService {
     return this.http.post(`${this.BASE_URL}/${endpoint}`, body);
   }
 
+  deleteRequest(endpoint: string, id: number) {
+    return this.http.delete(`${this.BASE_URL}/${endpoint}/${id}`);
+  }
+
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
   // private handleError<T>(
   //   request: string,
