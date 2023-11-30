@@ -7,7 +7,7 @@ import { DoctorService } from "src/app/services/doctor.service";
   styleUrls: ["./delete-doctor.component.css"],
 })
 export class DeleteDoctorComponent implements OnInit {
-  idInput: number = 0;
+  idInput: number | null = null;
   constructor(private doctorService: DoctorService) {}
 
   ngOnInit(): void {}

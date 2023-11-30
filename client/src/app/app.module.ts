@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddDoctorComponent } from './components/add-doctor/add-doctor.component';
 import { ListDoctorsComponent } from './components/list-doctors/list-doctors.component';
 import { DeleteDoctorComponent } from './components/delete-doctor/delete-doctor.component';
+import { UpdateDoctorComponent } from './components/update-doctor/update-doctor.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { DeleteDoctorComponent } from './components/delete-doctor/delete-doctor.
     AddDoctorComponent,
     ListDoctorsComponent,
     DeleteDoctorComponent,
+    UpdateDoctorComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,25 @@
-<h2>Add Doctor Page</h2>
-<div class="container">
+<h2>Update Doctor Page</h2>
+<div *ngIf="!idSlected">
+  <div class="update-form">
+    <div class="form-group">
+      <label>Write the doctor's id to update:</label>
+      <select [(ngModel)]="idInput" required>
+        <option *ngFor="let id of doctorIds" [ngValue]="id">
+          {{ id }}
+        </option>
+      </select>
+    </div>
+
+    <button class="btn" (click)="selectId()">update</button>
+  </div>
+  <app-list-doctors></app-list-doctors>
+</div>
+
+<div *ngIf="idSlected" class="container">
+  <button class="btn" (click)="selectId()">Change Id to update</button>
+
   <form (submit)="onSubmit()">
+    <label for="idmedecin">Doctor ID: {{ doctor.idmedecin }}</label>
     <div class="form-group">
       <label for="prenom">First Name:</label>
       <input
@@ -83,6 +102,6 @@
       </select>
     </div>
 
-    <button type="submit">Add Doctor</button>
+    <button type="submit">Update Doctor</button>
   </form>
 </div>

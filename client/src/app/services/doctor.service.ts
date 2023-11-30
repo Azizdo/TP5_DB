@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { CommunicationService } from "./communication.service";
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DoctorService {
   private doctorsSubject = new BehaviorSubject<any[]>([]);
   doctorsList = this.doctorsSubject.asObservable();
 
-  constructor(private request: CommunicationService) { }
+  constructor(private request: CommunicationService) {}
 
   getDoctors = () => {
     this.request.getRequest("").subscribe((res: any) => {
@@ -17,8 +17,16 @@ export class DoctorService {
     });
   };
 
+  getDoctorIds(): Observable<number[]> {
+    return this.doctorsList.pipe(
+      map((doctors) => doctors.map((doctor) => doctor.idmedecin))
+    );
+  }
+  
   deleteDoctor(id: number) {
-    const idExists = this.doctorsSubject.value.some((doctor) => doctor.idmedecin === id);
+    const idExists = this.doctorsSubject.value.some(
+      (doctor) => doctor.idmedecin === id
+    );
     if (!idExists) {
       alert("Veuillez entrer un ID valide");
       return;
