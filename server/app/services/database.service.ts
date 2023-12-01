@@ -105,6 +105,7 @@ export class DatabaseService {
 
   public deleteDoctor = async (id: number) => {
     try {
+      await this.deleteRelatedRecords(id);
       const result = await this.pool.query(
         "DELETE FROM medecins WHERE idmedecin = $1 RETURNING *",
         [id]
@@ -119,4 +120,10 @@ export class DatabaseService {
       throw error;
     }
   };
+
+  private async deleteRelatedRecords(id: any) {
+    await this.pool.query("DELETE FROM RendezVous WHERE idmedecin = $1", [
+      id,
+    ]);
+  }
 }
