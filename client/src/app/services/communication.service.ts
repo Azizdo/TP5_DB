@@ -27,6 +27,10 @@ export class CommunicationService {
     return this.http.post(`${this.BASE_URL}/${endpoint}`, body);
   }
 
+  putRequest(endpoint: string, body: any, id: number) {
+    return this.http.put(`${this.BASE_URL}/${endpoint}/${id}`, body);
+  }
+  
   deleteRequest(endpoint: string, id: number) {
     return this.http.delete(`${this.BASE_URL}/${endpoint}/${id}`);
   }

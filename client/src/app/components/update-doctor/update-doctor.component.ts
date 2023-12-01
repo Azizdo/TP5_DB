@@ -7,17 +7,10 @@ import { DoctorService } from "src/app/services/doctor.service";
   styleUrls: ["./update-doctor.component.css"],
 })
 export class UpdateDoctorComponent implements OnInit {
-  idInput: number | null = null;
+  idInput: number;
   idSlected: boolean = false;
   doctorIds: number[] = [];
-  doctor: any = {
-    idmedecin: 999,
-    prenom: "Default",
-    nom: "Doc",
-    specialite: "Dermatologie",
-    anneesexperience: 0,
-    idservice: 0,
-  };
+  doctor: any = {};
 
   constructor(private doctorService: DoctorService) {}
 
@@ -32,23 +25,37 @@ export class UpdateDoctorComponent implements OnInit {
   }
 
   selectId() {
+    if (
+      !this.idInput ||
+      isNaN(Number(this.idInput)) ||
+      Number(this.idInput) < 0
+    ) {
+      alert("Veuillez entrer un ID valide");
+      return;
+    }
+    try {
+      this.doctorService.getDoctor(this.idInput).subscribe((res: any) => {
+        this.doctor = res;
+      });
+      this.idSlected = !this.idSlected;
+    } catch (error) {
+      console.log(error);
+      alert("Erreur lors de la récupération du médecin");
+    }
+  }
+
+  cancelUpdate() {
     this.idSlected = !this.idSlected;
   }
 
-  updateDoctor() {
-    alert("Médecin mis à jour avec succès");
-  }
-
   onSubmit() {
-    // if (
-    //   !this.idInput ||
-    //   isNaN(Number(this.idInput)) ||
-    //   Number(this.idInput) < 0
-    // ) {
-    //   alert("Veuillez entrer un ID valide");
-    //   return;
-    // }
-    // this.doctor.idmedecin = this.idInput;
-    // this.updateDoctor();
+    try {
+      this.doctorService.updateDoctor(this.doctor, this.idInput);
+      this.idSlected = !this.idSlected;
+      alert("Médecin mis à jour avec succès");
+    } catch (error) {
+      console.log(error);
+      alert("Erreur lors de la mise à jour du médecin");
+    }
   }
 }

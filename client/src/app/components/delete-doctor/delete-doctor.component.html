@@ -1,16 +1,11 @@
 <h2>Delete Doctor Page</h2>
 <div class="delete-form">
-  <h3>Write the doctor's id to delete:</h3>
-  <input
-    type="number"
-    name="id"
-    id="id"
-    [(ngModel)]="idInput"
-    required
-    placeholder="ID to delete"
-    min="0"
-    pattern="[1-9][0-9]*"
-  />
+  <label>Write the doctor's id to delete:</label>
+  <select [(ngModel)]="idInput" required>
+    <option *ngFor="let id of doctorIds" [ngValue]="id">
+      {{ id }}
+    </option>
+  </select>
   <button class="btn" (click)="deleteDoctor()">delete</button>
 </div>
 <app-list-doctors> </app-list-doctors>

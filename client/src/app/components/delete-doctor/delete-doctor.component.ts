@@ -8,9 +8,19 @@ import { DoctorService } from "src/app/services/doctor.service";
 })
 export class DeleteDoctorComponent implements OnInit {
   idInput: number | null = null;
+  doctorIds: number[] = [];
+
   constructor(private doctorService: DoctorService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadDoctorsIds();
+  }
+
+  loadDoctorsIds() {
+    this.doctorService.getDoctorIds().subscribe((ids) => {
+      this.doctorIds = ids;
+    });
+  }
 
   deleteDoctor() {
     if (
@@ -21,7 +31,12 @@ export class DeleteDoctorComponent implements OnInit {
       alert("Veuillez entrer un ID valide");
       return;
     }
-    this.doctorService.deleteDoctor(this.idInput);
-    alert("Médecin supprimé avec succès");
+    try {
+      this.doctorService.deleteDoctor(this.idInput);
+      alert("Médecin supprimé avec succès");
+    } catch (error) {
+      console.log(error);
+      alert("Erreur lors de la suppression du médecin");
+    }
   }
 }

@@ -1,7 +1,7 @@
 <h2>Update Doctor Page</h2>
 <div *ngIf="!idSlected">
   <div class="update-form">
-    <div class="form-group">
+    <div>
       <label>Write the doctor's id to update:</label>
       <select [(ngModel)]="idInput" required>
         <option *ngFor="let id of doctorIds" [ngValue]="id">
@@ -10,13 +10,13 @@
       </select>
     </div>
 
-    <button class="btn" (click)="selectId()">update</button>
+    <button class="btn" (click)="selectId()">Start the update</button>
   </div>
   <app-list-doctors></app-list-doctors>
 </div>
 
 <div *ngIf="idSlected" class="container">
-  <button class="btn" (click)="selectId()">Change Id to update</button>
+  <button class="btn" (click)="cancelUpdate()">Cancel/Change Id to update</button>
 
   <form (submit)="onSubmit()">
     <label for="idmedecin">Doctor ID: {{ doctor.idmedecin }}</label>

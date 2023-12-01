@@ -48,7 +48,7 @@ export class DatabaseController {
 
     router.put("/:id", async (req: any, res: any) => {
       try {
-        const newDoctorValues = Object.values(req.body);
+        const newDoctorValues = req.body;
         const result = await this.databaseService.updateDoctor(newDoctorValues, req.params.id);
         res.send(result);
       } catch (error) {
