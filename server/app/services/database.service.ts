@@ -48,7 +48,12 @@ export class DatabaseService {
   };
 
   public addDoctor = async (newDoctorValues: any) => {
-    const id = Math.floor(Math.random() * 1000000);
+    let id = Math.floor(Math.random() * 1000000);
+    const existingDoctors = await this.getDoctors();
+    const idExists = existingDoctors.some((doctor) => doctor.idmedecin === id);
+    while (idExists) {
+      id = Math.floor(Math.random() * 1000000);
+    }
     newDoctorValues.idmedecin = id;
     try {
       const result = await this.pool.query(

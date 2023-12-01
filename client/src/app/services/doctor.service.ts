@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CommunicationService } from "./communication.service";
-import { BehaviorSubject, Observable, map } from "rxjs";
+import { BehaviorSubject, Observable, catchError, map, throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -27,39 +27,35 @@ export class DoctorService {
     );
   }
 
-  updateDoctor(doctor: any, id: number) {
+  updateDoctor(doctor: any, id: number): Observable<any> {
     const idExists = this.doctorsSubject.value.some(
       (doctor) => doctor.idmedecin === id
     );
+
     if (!idExists) {
-      throw Error("Veuillez entrer un ID valide");
-      return;
+      return throwError("Veuillez entrer un ID valide");
     }
-    try {
-      this.request.putRequest("", doctor, id).subscribe((res: any) => {
-        this.getDoctors();
-      });
-    } catch (error) {
-      console.log(error);
-      throw Error("Erreur lors de la mise à jour du médecin");
-    }
+
+    return this.request.putRequest("", doctor, id).pipe(
+      catchError((error) => {
+        console.error(error);
+        return throwError("Erreur lors de la mise à jour du médecin");
+      })
+    );
   }
 
-  deleteDoctor(id: number) {
+  deleteDoctor(id: number): Observable<any> {
     const idExists = this.doctorsSubject.value.some(
       (doctor) => doctor.idmedecin === id
     );
     if (!idExists) {
-      throw Error("Veuillez entrer un ID valide");
-      return;
+      return throwError("Veuillez entrer un ID valide");
     }
-    try {
-      this.request.deleteRequest("", id).subscribe((res: any) => {
-        this.getDoctors();
-      });
-    } catch (error) {
-      console.log(error);
-      throw Error("Erreur lors de la suppression du médecin");
-    }
+    return this.request.deleteRequest("", id).pipe(
+      catchError((error) => {
+        console.error(error);
+        return throwError("Erreur lors de la suppression du médecin");
+      })
+    );
   }
 }

@@ -31,12 +31,15 @@ export class DeleteDoctorComponent implements OnInit {
       alert("Veuillez entrer un ID valide");
       return;
     }
-    try {
-      this.doctorService.deleteDoctor(this.idInput);
-      alert("Médecin supprimé avec succès");
-    } catch (error) {
-      console.log(error);
-      alert("Erreur lors de la suppression du médecin");
-    }
+    this.doctorService.deleteDoctor(this.idInput).subscribe(
+      (res) => {
+        this.doctorService.getDoctors();
+        alert("Médecin supprimé avec succès");
+      },
+      (error: any) => {
+        console.log(error);
+        alert("Erreur lors de la suppression du médecin");
+      }
+    );
   }
 }

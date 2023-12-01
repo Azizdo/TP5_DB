@@ -49,13 +49,25 @@ export class UpdateDoctorComponent implements OnInit {
   }
 
   onSubmit() {
-    try {
-      this.doctorService.updateDoctor(this.doctor, this.idInput);
-      this.idSlected = !this.idSlected;
-      alert("Médecin mis à jour avec succès");
-    } catch (error) {
-      console.log(error);
-      alert("Erreur lors de la mise à jour du médecin");
+    if (
+      this.doctor.anneesexperience === undefined ||
+      typeof this.doctor.anneesexperience !== "number" ||
+      !Number.isInteger(this.doctor.anneesexperience)
+    ) {
+      alert("L'expérience du médecin doit être un nombre entier.");
+      return;
     }
+
+    this.doctorService.updateDoctor(this.doctor, this.idInput).subscribe(
+      (res) => {
+        this.doctorService.getDoctors();
+        this.idSlected = !this.idSlected;
+        alert("Médecin mis à jour avec succès");
+      },
+      (error) => {
+        console.log(error);
+        alert("Erreur lors de la mise à jour du médecin");
+      }
+    );
   }
 }
